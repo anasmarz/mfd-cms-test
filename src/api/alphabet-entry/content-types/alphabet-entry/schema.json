@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alphabet_entries",
+  "info": {
+    "singularName": "alphabet-entry",
+    "pluralName": "alphabet-entries",
+    "displayName": "BIM",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Perkataan": {
+      "type": "string"
+    },
+    "Word": {
+      "type": "string"
+    },
+    "Group": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::group.group",
+      "inversedBy": "bim_entries"
+    },
+    "Kumpulan": {
+      "type": "string"
+    },
+    "Kategori": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "string"
+    },
+    "Tag": {
+      "type": "string"
+    },
+    "Order": {
+      "type": "string"
+    },
+    "New": {
+      "type": "string"
+    },
+    "SOTD": {
+      "type": "string"
+    },
+    "Unnamed_12": {
+      "type": "string"
+    },
+    "Video": {
+      "type": "string"
+    },
+    "Image_Status": {
+      "type": "string"
+    },
+    "Video_Status": {
+      "type": "string"
+    },
+    "Release": {
+      "type": "string"
+    },
+    "Remark": {
+      "type": "string"
+    }
+  }
+}

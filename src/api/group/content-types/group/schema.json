@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groups",
+  "info": {
+    "singularName": "group",
+    "pluralName": "groups",
+    "displayName": "Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "GroupCategory": {
+      "type": "string"
+    },
+    "bim_entries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alphabet-entry.alphabet-entry",
+      "mappedBy": "Group"
+    }
+  }
+}
