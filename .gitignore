@@ -84,7 +84,7 @@ public/uploads/*
 !public/uploads/.gitkeep
 .tsbuildinfo
 .eslintcache
-
+.crt
 ############################
 # Node.js
 ############################

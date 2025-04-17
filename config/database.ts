@@ -1,3 +1,5 @@
+// Add fs import at the top
+import fs from 'fs';
 import path from 'path';
 import { parse } from 'pg-connection-string';
 
@@ -21,7 +23,8 @@ export default ({ env }) => {
         connectionString,
         ...(connectionString ? parse(connectionString) : {}),
         ssl: env.bool('DATABASE_SSL', true) && {
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false)  // Change default to false
+          ca: env('SUPABASE_CA_CERT'),  // Read from environment variable instead of file
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', env('NODE_ENV') === 'production')
         },
       },
       pool: {
