@@ -31,20 +31,12 @@ export default ({ env }) => {
     },
     postgres: {
       connection: {
-        // Use DATABASE_HOST as the connection string.
-        // parse() will extract the host, user, password, port, and database from the provided URL.
-        ...parse(env('DATABASE_HOST')),
-        // SSL configuration for PostgreSQL.
-        ssl: {
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false)
+        connectionString: env('DATABASE_URL'),
+        ssl: env.bool('DATABASE_SSL', true) && {
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true)
         },
-        // Specify the schema; default is "public".
-        schema: env('DATABASE_SCHEMA', 'public'),
       },
-      pool: {
-        min: env.int('DATABASE_POOL_MIN', 2),
-        max: env.int('DATABASE_POOL_MAX', 10)
-      },
+      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
     },
     sqlite: {
       connection: {
