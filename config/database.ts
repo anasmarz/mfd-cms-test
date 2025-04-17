@@ -18,13 +18,10 @@ export default ({ env }) => {
   const connections = {
     postgres: {
       connection: {
-        // Use the provided connection string.
         connectionString,
-        // Spread parsed properties from the connection string.
         ...(connectionString ? parse(connectionString) : {}),
-        // Enable SSL connection; adjust options as necessary.
         ssl: env.bool('DATABASE_SSL', true) && {
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true)
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false)  // Change default to false
         },
       },
       pool: {
