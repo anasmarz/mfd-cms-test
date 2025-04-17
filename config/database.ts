@@ -2,8 +2,11 @@ import path from 'path';
 import { parse } from 'pg-connection-string';
 
 export default ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'postgres'); // Changed default to postgres
+  // Get the client from your environment variables.
+  // Here the default is set to 'postgres'.
+  const client = env('DATABASE_CLIENT', 'postgres');
 
+  // Define connection configurations for supported databases.
   const connections = {
     mysql: {
       connection: {
@@ -21,21 +24,36 @@ export default ({ env }) => {
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+      pool: {
+        min: env.int('DATABASE_POOL_MIN', 2),
+        max: env.int('DATABASE_POOL_MAX', 10)
+      },
     },
     postgres: {
       connection: {
-        ...parse(env('DATABASE_URL')), // Remove hardcoded URL from here
+        // Use DATABASE_HOST as the connection string.
+        // parse() will extract the host, user, password, port, and database from the provided URL.
+        ...parse(env('DATABASE_HOST')),
+        // SSL configuration for PostgreSQL.
         ssl: {
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false)
         },
+        // Specify the schema; default is "public".
         schema: env('DATABASE_SCHEMA', 'public'),
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+      pool: {
+        min: env.int('DATABASE_POOL_MIN', 2),
+        max: env.int('DATABASE_POOL_MAX', 10)
+      },
     },
     sqlite: {
       connection: {
-        filename: path.join(__dirname, '..', '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+        filename: path.join(
+          __dirname,
+          '..',
+          '..',
+          env('DATABASE_FILENAME', '.tmp/data.db')
+        ),
       },
       useNullAsDefault: true,
     },
@@ -45,9 +63,10 @@ export default ({ env }) => {
     connection: {
       client,
       ...connections[client],
+      // Optional: Set a custom timeout for acquiring a connection.
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
     },
   };
 };
 
-// REMOVE THE DUPLICATE EXPORT DEFAULT AT THE BOTTOM
+// Note: Ensure there is no duplicate "export default" in this file.
