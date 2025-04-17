@@ -31,8 +31,8 @@ export default ({ env }) => {
     },
     postgres: {
       connection: {
-        ...parse(env('DATABASE_URL')),  // Add parsed connection details
         connectionString: env('DATABASE_URL'),
+        ...(env('DATABASE_URL') ? parse(env('DATABASE_URL')) : {}),  // Safe spread
         ssl: env.bool('DATABASE_SSL', true) && {
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true)
         },
