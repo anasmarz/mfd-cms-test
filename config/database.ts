@@ -31,6 +31,7 @@ export default ({ env }) => {
     },
     postgres: {
       connection: {
+        ...parse(env('DATABASE_URL')),  // Add parsed connection details
         connectionString: env('DATABASE_URL'),
         ssl: env.bool('DATABASE_SSL', true) && {
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true)
@@ -51,17 +52,11 @@ export default ({ env }) => {
     },
   };
 
-  // Add PostgreSQL connection parsing
-  const postgresConnection = parse(env('DATABASE_URL'));
-  
   return {
     connection: {
       client,
       ...connections[client],
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
-      // Add host and port explicitly for Render compatibility
-      host: postgresConnection.host,
-      port: postgresConnection.port
     },
   };
 };
