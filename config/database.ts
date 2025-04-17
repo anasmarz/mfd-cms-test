@@ -51,12 +51,17 @@ export default ({ env }) => {
     },
   };
 
+  // Add PostgreSQL connection parsing
+  const postgresConnection = parse(env('DATABASE_URL'));
+  
   return {
     connection: {
       client,
       ...connections[client],
-      // Optional: Set a custom timeout for acquiring a connection.
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
+      // Add host and port explicitly for Render compatibility
+      host: postgresConnection.host,
+      port: postgresConnection.port
     },
   };
 };
