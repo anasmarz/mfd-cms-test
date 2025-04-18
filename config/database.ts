@@ -22,12 +22,10 @@ export default ({ env }) => {
       connection: {
         connectionString,
         ...(connectionString ? parse(connectionString) : {}),
-        ssl: () => ({ // Wrap in function for dynamic evaluation
-          ca: env('SUPABASE_CA_CERT')
-            ? env('SUPABASE_CA_CERT').replace(/\\n/g, '\n') // Handle Render's env var formatting
-            : undefined,
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true)
-        }),
+        ssl: {
+          ca: env('SUPABASE_CA_CERT')?.replace(/\\n/g, '\n'),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', env('NODE_ENV') === 'production')
+        },
       },
       pool: {
         // Customize your connection pool settings as needed.
