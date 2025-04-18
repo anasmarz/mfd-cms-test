@@ -1,28 +1,12 @@
 {
   "kind": "collectionType",
-  "collectionName": "category_groups",
+  "collectionName": "category-groups", 
   "info": {
-    "singularName": "category-group", 
-    "pluralName": "category-groups", 
-    "displayName": "Category Group",
-    "description": "Grouping categories for alphabet entries"
-  },
-  "options": {
-    "draftAndPublish": true
+    "singularName": "category-group",
+    "pluralName": "category-groups",
+    "displayName": "Category Group"
   },
   "attributes": {
-    "KumpulanKategori": {
-      "type": "string",
-      "required": true
-    },
-    "GroupCategory": {
-      "type": "string",
-      "required": true
-    },
-    "Remark": {
-      "type": "text"
-    },
-    
     "AlphabetEntries": {
       "type": "relation",
       "relation": "oneToMany",
