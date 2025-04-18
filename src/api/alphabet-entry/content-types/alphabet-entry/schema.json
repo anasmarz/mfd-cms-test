@@ -17,11 +17,11 @@
     "Word": {
       "type": "string"
     },
-    "Group": {
+    "CategoryGroup": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::group.group",
-      "inversedBy": "bim_entries"
+      "target": "api::category-group.category-group",
+      "inversedBy": "AlphabetEntries"
     },
     "Kumpulan": {
       "type": "string"

@@ -23,6 +23,12 @@
       "relation": "oneToMany",
       "target": "api::alphabet-entry.alphabet-entry",
       "mappedBy": "Group"
+    },
+    "CategoryGroups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category-group.category-group",
+      "mappedBy": "Group"
     }
   }
 }
