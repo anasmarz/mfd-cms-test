@@ -373,31 +373,43 @@ export interface ApiAlphabetEntryAlphabetEntry
   extends Struct.CollectionTypeSchema {
   collectionName: 'alphabet_entries';
   info: {
-    displayName: 'alphabet-entry';
+    description: '';
+    displayName: 'BIM';
     pluralName: 'alphabet-entries';
     singularName: 'alphabet-entry';
   };
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
+    Category: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
+    Group: Schema.Attribute.Relation<'manyToOne', 'api::group.group'>;
+    Image_Status: Schema.Attribute.String;
+    Kategori: Schema.Attribute.String;
+    Kumpulan: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::alphabet-entry.alphabet-entry'
-    >;
+    > &
+      Schema.Attribute.Private;
+    New: Schema.Attribute.String;
+    Order: Schema.Attribute.String;
+    Perkataan: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    Release: Schema.Attribute.String;
+    Remark: Schema.Attribute.String;
+    SOTD: Schema.Attribute.String;
+    Tag: Schema.Attribute.String;
+    Unnamed_12: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Video: Schema.Attribute.String;
+    Video_Status: Schema.Attribute.String;
     Word: Schema.Attribute.String;
   };
 }
@@ -454,6 +466,10 @@ export interface ApiGroupGroup extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    bim_entries: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alphabet-entry.alphabet-entry'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
