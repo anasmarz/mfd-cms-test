@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { parse } from 'pg-connection-string';
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // TEMPORARY for testing only
+
 export default ({ env }) => {
   // Determine the database client. For Supabase, we use 'postgres'.
   const client = env('DATABASE_CLIENT', 'postgres');
