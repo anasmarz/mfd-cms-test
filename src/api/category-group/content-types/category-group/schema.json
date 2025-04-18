@@ -28,6 +28,7 @@
       "target": "api::group.group",
       "inversedBy": "CategoryGroups"
     },
+    
     "AlphabetEntries": {
       "type": "relation",
       "relation": "oneToMany",
