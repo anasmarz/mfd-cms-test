@@ -4,33 +4,36 @@
   "info": {
     "singularName": "alphabet-entry",
     "pluralName": "alphabet-entries",
-    "displayName": "BIM",
-    "description": ""
+    "displayName": "BIM"
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
   "attributes": {
     "Perkataan": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "Word": {
-      "type": "string"
-    },
-    "KumpulanKategoriRelation": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category-group.category-group",
-      "inversedBy": "AlphabetEntries"
+      "type": "string",
+      "required": true
     },
     "KumpulanKategori": {
       "type": "string",
       "required": true
+    },
+    "GroupCategory": {
+      "type": "string",
+      "required": true
+    },
+    "Kumpulan": {
+      "type": "string"
+    },
+    "Group": {
+      "type": "string"
+    },
+    "Kategori": {
+      "type": "string"
     },
     "Category": {
       "type": "string"
@@ -63,7 +66,7 @@
       "type": "string"
     },
     "Remark": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

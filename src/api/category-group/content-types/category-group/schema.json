@@ -4,16 +4,10 @@
   "info": {
     "singularName": "category-group",
     "pluralName": "category-groups",
-    "displayName": "Category Group",
-    "description": "Grouping categories for alphabet entries"
+    "displayName": "Category Group"
   },
   "options": {
     "draftAndPublish": true
-  },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
   },
   "attributes": {
     "KumpulanKategori": {
