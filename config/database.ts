@@ -22,8 +22,8 @@ export default ({ env }) => {
       connection: {
         connectionString,
         ...(connectionString ? parse(connectionString) : {}),
-        ssl: env.bool('DATABASE_SSL', true) && {
-          ca: env('SUPABASE_CA_CERT'),  // Read from environment variable instead of file
+        ssl: {
+          ca: env('SUPABASE_CA_CERT'),
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', env('NODE_ENV') === 'production')
         },
       },
