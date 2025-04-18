@@ -2,8 +2,8 @@
   "kind": "collectionType",
   "collectionName": "category_groups",
   "info": {
-    "singularName": "category-group", // Must match exactly
-    "pluralName": "category-groups",  // Must match exactly
+    "singularName": "category-group", 
+    "pluralName": "category-groups", 
     "displayName": "Category Group",
     "description": "Grouping categories for alphabet entries"
   },
