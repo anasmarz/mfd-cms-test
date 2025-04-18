@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "category-groups", 
+  "collectionName": "category_groups", 
   "info": {
     "singularName": "category-group",
     "pluralName": "category-groups",
