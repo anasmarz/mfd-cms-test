@@ -14,8 +14,11 @@ export default ({ env }) => ({
             overwrite: false,
             folder: 'test-folder',
             resource_type: 'auto',
-            // Add the following configuration to enforce folder structure
-            public_id: (_, resource) => `${resource?.folder ?? 'test-folder'}/${resource?.originalFilename}`,
+            public_id: (_, resource) => {
+              const folder = resource?.folder || 'test-folder';
+              const filename = resource?.name?.split('.')[0] || Date.now().toString();
+              return `${folder}/${filename}`;
+            },
           },
           delete: {},
         },
